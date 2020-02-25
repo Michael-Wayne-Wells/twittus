@@ -10,13 +10,14 @@ function Feed(props){
     console.log(props),
 
     <Card bg="dark" style={{ width: '28rem' }}>
-    
+
       <ListGroup variant="flush">
-        {props.feed.map((tweet, index) =>
-          <Tweet author={tweet.author}
+        {Object.keys(props.feed).map(function(tweetId) {
+          let tweet = props.feed[tweetId];
+          return <Tweet author={tweet.author}
             body={tweet.body}
-            key={tweet.id}/>
-          )}
+            key={tweetId}/>;
+          })}
           </ListGroup>
         </Card>
 
@@ -25,7 +26,7 @@ function Feed(props){
   }
 
   Feed.propTypes = {
-    feed: PropTypes.array
+    feed: PropTypes.object
   };
 
   export default Feed;
